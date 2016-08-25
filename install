@@ -13,7 +13,13 @@ if sys.platform == 'darwin':
     exec_path = '/Applications/Octave.app/Contents/Resources/usr/bin/mkoctfile'
     lib_dir = 'osx'
 elif sys.platform.startswith('linux'):
-    exec_path = 'mkoctfile'
+    try:
+        exec_path = subprocess.Popen(["which", "mkoctfile"], stdout=subprocess.PIPE).communicate()[0][:-1]
+    except subprocess.CalledProcessError as e:
+        print "Could not retrieve path of mkoctfile"
+        print e
+        sys.exit(e.returncode)
+
     lib_dir = 'linux'
 else:
     print 'Not supported.'
@@ -26,6 +32,8 @@ c_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), './ostri
 if not os.path.isfile(exec_path):
     print 'Could not find ' + str(exec_path)
     sys.exit(1)
+else:
+    print 'Found mkoctfile in ' + exec_path
 
 try:
 	subprocess.check_call(
@@ -35,6 +43,7 @@ try:
             '-o',
 			os.path.join(env_dir, function_name),
 		], stdout=sys.stdout, stderr=sys.stderr)
+	print 'Successfully compiled mex function'
 	sys.exit(0)
 except subprocess.CalledProcessError as e:
 	print e
