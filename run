@@ -42,7 +42,9 @@ def bash_to_matlab(a):
 
 arguments = map(bash_to_matlab, args.arguments)
 
-matlab_runner_script = """cd('%s'); addpath('%s'); addpath('%s'); try %s(%s); exit(0); catch, ME = lasterror; fprintf(2, '%%s\\n', ME.message); exit(1); end"""%(dir_name, env_dir, dir_name, function_name,','.join(arguments))
+matlab_runner_script = ("""cd('%s'); addpath('%s'); addpath('%s'); """ +\
+"""rand=ostrich_rand;""" +\
+"""try %s(%s); exit(0); catch, ME = lasterror; fprintf(2, '%%s\\n', ME.message); exit(1); end""")%(dir_name, env_dir, dir_name, function_name,','.join(arguments))
 
 try:
 	subprocess.check_call(

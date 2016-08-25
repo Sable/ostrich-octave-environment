@@ -20,7 +20,7 @@ else:
     sys.exit(99)
 
 env_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(os.path.realpath(__file__))), lib_dir))
-function_name = 'rand'
+function_name = 'ostrich_rand'
 c_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), './ostrich_twister_rand_mex.c')
 
 try:
