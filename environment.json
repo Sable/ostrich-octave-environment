@@ -6,5 +6,11 @@
 	"supported-languages": ["matlab"],
 	"supported-formats": ["text"],
 	"implementation-language": "x86",
-	"implementation-format": "binary"
+	"implementation-format": "binary",
+    "dependencies": [
+        {
+            "source": "https://github.com/Sable/ostrich-c-implementation-common.git",
+            "destination": { "file": "./common" }
+        }
+    ]
 }
