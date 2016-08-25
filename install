@@ -23,7 +23,7 @@ env_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(os.path.
 function_name = 'ostrich_rand'
 c_file_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), './ostrich_twister_rand_mex.c')
 
-if !os.path.isfile(exec_path):
+if not os.path.isfile(exec_path):
     print 'Could not find ' + str(exec_path)
     sys.exit(1)
 
